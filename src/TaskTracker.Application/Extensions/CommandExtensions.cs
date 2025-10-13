@@ -37,7 +37,8 @@ public static class CommandExtensions
         {
             throw new ArgumentNullException(nameof(taskToUpdate));
         }
-     
+
+        // Update the properties of the existing TaskItem with the values from the UpdateTaskCommand.  
         taskToUpdate.Title = updateTaskCommand.UpdateTaskRequest.Title;
         taskToUpdate.Description = updateTaskCommand.UpdateTaskRequest.Description;
         taskToUpdate.Status = (Domain.Task.Status)updateTaskCommand.UpdateTaskRequest.Status;

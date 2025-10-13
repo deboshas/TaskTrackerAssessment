@@ -14,7 +14,6 @@ namespace TaskTracker.API.Controllers;
 [Route("tasks")]
 public class TaskController : ApiController
 {
-
     private readonly ISender _sender;
 
     public TaskController(ISender sender)
@@ -22,6 +21,10 @@ public class TaskController : ApiController
         _sender = sender ?? throw new ArgumentNullException(nameof(sender));
     }
 
+    /// <summary>  
+    /// Retrieves all tasks from the system.  
+    /// </summary>  
+    /// <returns>An IActionResult containing the list of tasks or an error response.</returns>  
     [HttpGet("all")]
     public async Task<IActionResult> GetAllTasks()
     {
@@ -31,18 +34,26 @@ public class TaskController : ApiController
             Problem);
     }
 
+    /// <summary>  
+    /// Creates a new task based on the provided request data.  
+    /// </summary>  
+    /// <param name="createTaskRequest">The request object containing task details.</param>  
+    /// <returns>An IActionResult containing the created task or an error response.</returns>  
     [HttpPost("add")]
     public async Task<IActionResult> CreateTask([FromBody] CreateTaskRequest createTaskRequest)
     {
-
         var createtaskCommand = new CreateTaskCommand(createTaskRequest);
         var result = await _sender.Send(createtaskCommand);
         return result.Match(
             task => Created(task),
             Problem);
-
     }
 
+    /// <summary>  
+    /// Updates an existing task based on the provided request data.  
+    /// </summary>  
+    /// <param name="updateTaskRequest">The request object containing updated task details.</param>  
+    /// <returns>An IActionResult containing the updated task or an error response.</returns>  
     [HttpPut("update")]
     public async Task<IActionResult> Updatetask([FromBody] UpdateTaskRequest updateTaskRequest)
     {
@@ -51,9 +62,13 @@ public class TaskController : ApiController
         return result.Match(
             task => Ok(task),
             Problem);
-
     }
 
+    /// <summary>  
+    /// Removes a task identified by the provided task ID.  
+    /// </summary>  
+    /// <param name="taskId">The unique identifier of the task to be removed.</param>  
+    /// <returns>An IActionResult indicating success or an error response.</returns>  
     [HttpDelete("remove/{taskId}")]
     public async Task<IActionResult> Updatetask(Guid taskId)
     {
@@ -62,6 +77,5 @@ public class TaskController : ApiController
         return result.Match(
             _ => Ok(),
             Problem);
-
     }
 }

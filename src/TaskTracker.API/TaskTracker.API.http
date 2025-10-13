@@ -1,0 +1,6 @@
+@Berkeley_Myles_Assessment_HostAddress = http://localhost:5001
+
+GET {{Berkeley_Myles_Assessment_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

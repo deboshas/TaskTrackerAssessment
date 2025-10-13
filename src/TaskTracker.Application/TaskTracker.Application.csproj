@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ErrorOr" Version="2.0.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
+    <PackageReference Include="MediatR" Version="13.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TaskTracker.Contracts\TaskTracker.Contracts.csproj" />
+    <ProjectReference Include="..\TaskTracker.Domain\TaskTracker.Domain.csproj" />
+    <ProjectReference Include="..\TaskTracker.Infrastructure\TaskTracker.Infrastructure.csproj" />
+    <ProjectReference Include="..\TaskTracker.Shared\TaskTracker.Kernel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Task\Update\" />
+    <Folder Include="Task\RemoveAll\" />
+    <Folder Include="Task\Remove\" />
+    <Folder Include="Task\Search\" />
+  </ItemGroup>
+
+</Project>

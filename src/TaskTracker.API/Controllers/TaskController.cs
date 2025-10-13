@@ -3,6 +3,8 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TaskTracker.Application.Task.Create;
 using TaskTracker.Application.Task.GetAll;
+using TaskTracker.Application.Task.Remove;
+using TaskTracker.Application.Task.Update;
 using TaskTracker.Contracts.Request.Task;
 
 namespace TaskTracker.API.Controllers;
@@ -37,6 +39,28 @@ public class TaskController : ApiController
         var result = await _sender.Send(createtaskCommand);
         return result.Match(
             task => Created(task),
+            Problem);
+
+    }
+
+    [HttpPut("update")]
+    public async Task<IActionResult> Updatetask([FromBody] UpdateTaskRequest updateTaskRequest)
+    {
+        var updateTaskCommand = new UpdateTaskCommand(updateTaskRequest);
+        var result = await _sender.Send(updateTaskCommand);
+        return result.Match(
+            task => Ok(task),
+            Problem);
+
+    }
+
+    [HttpDelete("remove/{taskId}")]
+    public async Task<IActionResult> Updatetask(Guid taskId)
+    {
+        var removeTaskCommand = new RemoveTaskCommand(taskId);
+        var result = await _sender.Send(removeTaskCommand);
+        return result.Match(
+            _ => Ok(),
             Problem);
 
     }

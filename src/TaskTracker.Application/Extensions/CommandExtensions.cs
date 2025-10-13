@@ -37,8 +37,7 @@ public static class CommandExtensions
         {
             throw new ArgumentNullException(nameof(taskToUpdate));
         }
-
-        taskToUpdate.Id = updateTaskCommand.UpdateTaskRequest.Id;
+     
         taskToUpdate.Title = updateTaskCommand.UpdateTaskRequest.Title;
         taskToUpdate.Description = updateTaskCommand.UpdateTaskRequest.Description;
         taskToUpdate.Status = (Domain.Task.Status)updateTaskCommand.UpdateTaskRequest.Status;

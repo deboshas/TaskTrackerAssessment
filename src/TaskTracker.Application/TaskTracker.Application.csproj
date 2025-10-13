@@ -20,9 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Task\Update\" />
-    <Folder Include="Task\RemoveAll\" />
-    <Folder Include="Task\Remove\" />
     <Folder Include="Task\Search\" />
   </ItemGroup>
 

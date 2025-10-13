@@ -72,5 +72,8 @@ public class TaskTrackerRepository : ITaskTrackerRepository
         return await _dbContext.SaveChangesAsync(cancellationToken);
     }
 
-   
+    public Task<IEnumerable<TaskItem?>> FindAllByIdAsync(Guid id, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
 }

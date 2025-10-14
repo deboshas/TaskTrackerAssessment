@@ -1,5 +1,6 @@
 ﻿using TaskTracker.Application.Task.Create;
 using TaskTracker.Application.Task.Update;
+using TaskTracker.Contracts.Response;
 using TaskTracker.Domain.Task;
 
 namespace TaskTracker.Application.Extensions;
@@ -11,7 +12,7 @@ public static class CommandExtensions
     /// </summary>  
     /// <param name="createTaskCommand">The command containing task creation details.</param>  
     /// <returns>A TaskItem object populated with the data from the CreateTaskCommand.</returns>  
-    public static TaskItem MapToDomain(this CreateTaskCommand createTaskCommand)
+    internal static TaskItem MapToDomain(this CreateTaskCommand createTaskCommand)
     {
         return new TaskItem
         {
@@ -31,7 +32,7 @@ public static class CommandExtensions
     /// <param name="taskToUpdate">The existing TaskItem to be updated.</param>  
     /// <returns>The updated TaskItem object.</returns>  
     /// <exception cref="ArgumentNullException">Thrown if the taskToUpdate parameter is null.</exception>  
-    public static TaskItem MapUpdatedTask(this UpdateTaskCommand updateTaskCommand, TaskItem taskToUpdate)
+    internal static TaskItem MapUpdatedTask(this UpdateTaskCommand updateTaskCommand, TaskItem taskToUpdate)
     {
         if (taskToUpdate == null)
         {
@@ -47,5 +48,21 @@ public static class CommandExtensions
         taskToUpdate.UserId = updateTaskCommand.UpdateTaskRequest.UserId;
 
         return taskToUpdate;
+    }
+
+    internal static IEnumerable<TaskResponse> MapToResponse(this IQueryable<TaskItem> filteredTasks)
+    {
+        foreach (var filteredTask in filteredTasks)
+        {
+            yield return new TaskResponse(
+                filteredTask.Id,
+                filteredTask.Title,
+                filteredTask.Description,
+                (TaskTracker.Contracts.Request.Task.Status)filteredTask.Status,
+                filteredTask.DueDate,
+                (TaskTracker.Contracts.Request.Task.Priority)filteredTask.Priority,
+                filteredTask.UserId
+            );
+        }
     }
 }

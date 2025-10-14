@@ -6,7 +6,7 @@ using TaskTracker.Infrastructure.Repositories.Abstractions;
 
 namespace TaskTracker.Application.Task.GetAll;
 
-public class GetAllTasksQueryHandler : IQueryHandler<SearchTasksQuery, ErrorOr<List<TaskResponse>>>
+public class GetAllTasksQueryHandler : IQueryHandler<GetAllTasksQuery, ErrorOr<List<TaskResponse>>>
 {
     private readonly ITaskTrackerRepository _taskTrackerRepository;
     private readonly ILogger<GetAllTasksQueryHandler> _logger;
@@ -17,7 +17,7 @@ public class GetAllTasksQueryHandler : IQueryHandler<SearchTasksQuery, ErrorOr<L
         _taskTrackerRepository = taskTrackerRepository ?? throw new ArgumentNullException(nameof(taskTrackerRepository));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
-    public async Task<ErrorOr<List<TaskResponse>>> Handle(SearchTasksQuery getAllTasksQuery, CancellationToken cancellationToken)
+    public async Task<ErrorOr<List<TaskResponse>>> Handle(GetAllTasksQuery getAllTasksQuery, CancellationToken cancellationToken)
     {
         try
         {

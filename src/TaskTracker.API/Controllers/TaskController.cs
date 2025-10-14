@@ -28,7 +28,7 @@ public class TaskController : ApiController
     [HttpGet("all")]
     public async Task<IActionResult> GetAllTasks()
     {
-        var result = await _sender.Send(new GetAllTasksQuery());
+        var result = await _sender.Send(new SearchTasksQuery());
         return result.Match(
             tasks => Ok(tasks),
             Problem);

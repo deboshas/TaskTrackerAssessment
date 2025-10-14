@@ -21,14 +21,6 @@ public interface IRepository<T> : IUnitOfWork
     Task<T?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
 
     /// <summary>  
-    /// Retrieves all entities of type T that match the specified unique identifier asynchronously.  
-    /// </summary>  
-    /// <param name="id">The unique identifier to filter entities.</param>  
-    /// <param name="cancellationToken">A token to cancel the operation.</param>  
-    /// <returns>A collection of entities matching the specified identifier.</returns>  
-    Task<IEnumerable<T?>> FindAllByIdAsync(Guid id, CancellationToken cancellationToken);
-
-    /// <summary>  
     /// Adds a single entity of type T to the repository.  
     /// </summary>  
     /// <param name="entity">The entity to add.</param>  

@@ -8,11 +8,11 @@ namespace TaskTracker.Application.Task.Update
         {
             RuleFor(x => x.UpdateTaskRequest.Title)
                 .NotEmpty().WithMessage("Title is required.")
-                .MaximumLength(100).WithMessage("Title must not exceed 100 characters.");
+                .MaximumLength(10).WithMessage("Title must not exceed 10 characters.");
 
             RuleFor(x => x.UpdateTaskRequest.Description)
                 .NotEmpty().WithMessage("Description is required.")
-                .MaximumLength(100).WithMessage("Description must not exceed 100 characters.");
+                .MaximumLength(10).WithMessage("Description must not exceed 10 characters.");
 
             RuleFor(x => x.UpdateTaskRequest.Status)
                 .NotEmpty().WithMessage("Status is required.")

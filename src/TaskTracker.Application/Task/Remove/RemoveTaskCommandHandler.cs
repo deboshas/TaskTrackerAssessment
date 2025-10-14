@@ -1,17 +1,16 @@
 ﻿using ErrorOr;
 using Microsoft.Extensions.Logging;
 using TaskTracker.Application.CQRS.Abstractions;
-using TaskTracker.Application.Task.Create;
 using TaskTracker.Infrastructure.Repositories.Abstractions;
 
 namespace TaskTracker.Application.Task.Remove;
 
-public class UpdateTaskCommandHandler : ICommandHander<RemoveTaskCommand, ErrorOr<Success>>
+public class RemoveTaskCommandHandler : ICommandHander<RemoveTaskCommand, ErrorOr<Success>>
 {
     private readonly ITaskTrackerRepository _taskTrackerRepository;
-    private readonly ILogger<CreateTaskCommandHandler> _logger;
+    private readonly ILogger<RemoveTaskCommandHandler> _logger;
 
-    public UpdateTaskCommandHandler(ITaskTrackerRepository taskTrackerRepository, ILogger<CreateTaskCommandHandler> logger)
+    public RemoveTaskCommandHandler(ITaskTrackerRepository taskTrackerRepository, ILogger<RemoveTaskCommandHandler> logger)
     {
 
         _taskTrackerRepository = taskTrackerRepository ?? throw new ArgumentNullException(nameof(taskTrackerRepository));

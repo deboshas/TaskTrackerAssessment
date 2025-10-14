@@ -2,17 +2,17 @@
 
 namespace TaskTracker.Application.Task.Create
 {
-    public class UpdateTaskCommandValidator : AbstractValidator<CreateTaskCommand>
+    public class CreateTaskCommandValidator : AbstractValidator<CreateTaskCommand>
     {
-        public UpdateTaskCommandValidator()
+        public CreateTaskCommandValidator()
         {
             RuleFor(x => x.CreateTaskRequest.Title)
             .NotEmpty().WithMessage("Title is required.")
-            .MaximumLength(100).WithMessage("Title must not exceed 100 characters.");
+            .MaximumLength(10).WithMessage("Title must not exceed 10 characters.");
 
             RuleFor(x => x.CreateTaskRequest.Description)
             .NotEmpty().WithMessage("Description is required.")
-            .MaximumLength(100).WithMessage("Description must not exceed 100 characters.");
+            .MaximumLength(10).WithMessage("Description must not exceed 10 characters.");
 
             RuleFor(x => x.CreateTaskRequest.Status)
                                       .NotEmpty().WithMessage("Status is required.")

@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskTracker.Kernel", "TaskT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskTracker.Contracts", "TaskTracker.Contracts\TaskTracker.Contracts.csproj", "{025FEEA6-59A7-4892-B5D9-FF3A4C22BF6E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DD2697D4-72C2-426D-85D6-A50803582DD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskTracker.Application.Tests", "TaskTracker.Application.Tests\TaskTracker.Application.Tests.csproj", "{F8F7C4D4-6B25-4B95-9877-B33C14B9EAFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,8 +49,15 @@ Global
 		{025FEEA6-59A7-4892-B5D9-FF3A4C22BF6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{025FEEA6-59A7-4892-B5D9-FF3A4C22BF6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{025FEEA6-59A7-4892-B5D9-FF3A4C22BF6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8F7C4D4-6B25-4B95-9877-B33C14B9EAFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8F7C4D4-6B25-4B95-9877-B33C14B9EAFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8F7C4D4-6B25-4B95-9877-B33C14B9EAFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8F7C4D4-6B25-4B95-9877-B33C14B9EAFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F8F7C4D4-6B25-4B95-9877-B33C14B9EAFC} = {DD2697D4-72C2-426D-85D6-A50803582DD6}
 	EndGlobalSection
 EndGlobal

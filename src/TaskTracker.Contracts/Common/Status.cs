@@ -1,4 +1,4 @@
-﻿namespace TaskTracker.Contracts.Request.Task;
+﻿namespace TaskTracker.Contracts.Common;
 
 public enum Status
 {

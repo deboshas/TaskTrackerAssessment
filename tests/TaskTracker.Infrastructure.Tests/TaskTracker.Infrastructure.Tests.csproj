@@ -20,10 +20,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\TaskTracker.Contracts\TaskTracker.Contracts.csproj" />
-		<ProjectReference Include="..\TaskTracker.Domain\TaskTracker.Domain.csproj" />
-		<ProjectReference Include="..\TaskTracker.Infrastructure\TaskTracker.Infrastructure.csproj" />
-		<ProjectReference Include="..\TaskTracker.Shared\TaskTracker.Kernel.csproj" />
+	  <ProjectReference Include="..\..\src\TaskTracker.Application\TaskTracker.Application.csproj" />
+	  <ProjectReference Include="..\..\src\TaskTracker.Contracts\TaskTracker.Contracts.csproj" />
+	  <ProjectReference Include="..\..\src\TaskTracker.Domain\TaskTracker.Domain.csproj" />
+	  <ProjectReference Include="..\..\src\TaskTracker.Infrastructure\TaskTracker.Infrastructure.csproj" />
+	  <ProjectReference Include="..\..\src\TaskTracker.Shared\TaskTracker.Kernel.csproj" />
 	</ItemGroup>
   <ItemGroup>
     <Using Include="Xunit" />

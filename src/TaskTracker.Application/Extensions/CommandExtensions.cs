@@ -1,6 +1,7 @@
 ﻿using TaskTracker.Application.Task.Create;
 using TaskTracker.Application.Task.Update;
-using TaskTracker.Contracts.Response;
+using TaskTracker.Contracts.Common;
+using TaskTracker.Contracts.Response.Task;
 using TaskTracker.Domain.Task;
 
 namespace TaskTracker.Application.Extensions;
@@ -18,8 +19,8 @@ public static class CommandExtensions
         {
             Title = createTaskCommand?.CreateTaskRequest?.Title ?? throw new ArgumentNullException(nameof(createTaskCommand.CreateTaskRequest.Title)),
             Description = createTaskCommand?.CreateTaskRequest?.Description,
-            Status = Enum.TryParse<Status>(createTaskCommand?.CreateTaskRequest?.Status, ignoreCase: true, out var status) ? status : throw new ArgumentException("Invalid Status value"),
-            Priority = Enum.TryParse<Priority>(createTaskCommand?.CreateTaskRequest?.Priority, ignoreCase: true, out var priority) ? priority : throw new ArgumentException("Invalid Priority value"),
+            Status = Enum.TryParse<Domain.Task.Status>(createTaskCommand?.CreateTaskRequest?.Status, ignoreCase: true, out var status) ? status : throw new ArgumentException("Invalid Status value"),
+            Priority = Enum.TryParse<Domain.Task.Priority>(createTaskCommand?.CreateTaskRequest?.Priority, ignoreCase: true, out var priority) ? priority : throw new ArgumentException("Invalid Priority value"),
             DueDate = createTaskCommand?.CreateTaskRequest?.DueDate,
             UserId = createTaskCommand?.CreateTaskRequest?.UserId ?? throw new ArgumentNullException(nameof(createTaskCommand.CreateTaskRequest.UserId))
         };
@@ -42,8 +43,8 @@ public static class CommandExtensions
         // Update the properties of the existing TaskItem with the values from the UpdateTaskCommand.  
         taskToUpdate.Title = updateTaskCommand.UpdateTaskRequest.Title;
         taskToUpdate.Description = updateTaskCommand.UpdateTaskRequest.Description;
-        taskToUpdate.Status = Enum.TryParse<Status>(updateTaskCommand.UpdateTaskRequest.Status, ignoreCase: true, out var status) ? status : throw new ArgumentException("Invalid Status value");
-        taskToUpdate.Priority = Enum.TryParse<Priority>(updateTaskCommand.UpdateTaskRequest.Priority, ignoreCase: true, out var priority) ? priority : throw new ArgumentException("Invalid Priority value");
+        taskToUpdate.Status = Enum.TryParse<Domain.Task.Status>(updateTaskCommand.UpdateTaskRequest.Status, ignoreCase: true, out var status) ? status : throw new ArgumentException("Invalid Status value");
+        taskToUpdate.Priority = Enum.TryParse<Domain.Task.Priority>(updateTaskCommand.UpdateTaskRequest.Priority, ignoreCase: true, out var priority) ? priority : throw new ArgumentException("Invalid Priority value");
         taskToUpdate.DueDate = updateTaskCommand.UpdateTaskRequest.DueDate;
         taskToUpdate.UserId = updateTaskCommand.UpdateTaskRequest.UserId;
 
@@ -58,9 +59,9 @@ public static class CommandExtensions
                 filteredTask.Id,
                 filteredTask.Title,
                 filteredTask.Description,
-                (TaskTracker.Contracts.Request.Task.Status)filteredTask.Status,
+                (Contracts.Common.Status)filteredTask.Status,
                 filteredTask.DueDate,
-                (TaskTracker.Contracts.Request.Task.Priority)filteredTask.Priority,
+                (Contracts.Common.Priority)filteredTask.Priority,
                 filteredTask.UserId
             );
         }

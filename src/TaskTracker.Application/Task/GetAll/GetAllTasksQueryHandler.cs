@@ -1,7 +1,8 @@
 ﻿using ErrorOr;
 using Microsoft.Extensions.Logging;
 using TaskTracker.Application.CQRS.Abstractions;
-using TaskTracker.Contracts.Response;
+using TaskTracker.Contracts.Common;
+using TaskTracker.Contracts.Response.Task;
 using TaskTracker.Infrastructure.Repositories.Abstractions;
 
 namespace TaskTracker.Application.Task.GetAll;
@@ -33,9 +34,9 @@ public class GetAllTasksQueryHandler : IQueryHandler<GetAllTasksQuery, ErrorOr<L
                     t.Id,
                     t.Title,
                     t.Description,
-                    (Contracts.Request.Task.Status)t.Status,
+                    (Status)t.Status,
                     t.DueDate,
-                    (Contracts.Request.Task.Priority)t.Priority,
+                    (Priority)t.Priority,
                     t.UserId
                 )).ToList();
         }

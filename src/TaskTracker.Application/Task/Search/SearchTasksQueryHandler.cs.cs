@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using TaskTracker.Application.CQRS.Abstractions;
 using TaskTracker.Application.Extensions;
-using TaskTracker.Contracts.Response;
+using TaskTracker.Contracts.Response.Task;
 using TaskTracker.Infrastructure.Repositories.Abstractions;
 
 namespace TaskTracker.Application.Task.Search;

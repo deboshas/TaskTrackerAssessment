@@ -3,7 +3,7 @@
 public record UpdateTaskRequest(Guid Id,
    string Title,
    string? Description,
-   Status Status,
+   string Status,
    DateTime? DueDate,
-   Priority Priority,
+   string Priority,
    string UserId);

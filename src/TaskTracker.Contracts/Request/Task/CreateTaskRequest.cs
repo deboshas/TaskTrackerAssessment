@@ -3,8 +3,8 @@
 public record CreateTaskRequest(
    string Title,
    string? Description,
-   Status Status,
+   string Status,
    DateTime? DueDate,
-   Priority Priority,
+   string Priority,
    string UserId
 );

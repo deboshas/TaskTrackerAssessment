@@ -15,12 +15,12 @@ public static class CommandExtensions
     {
         return new TaskItem
         {
-            Title = createTaskCommand?.CreateTaskRequest?.Title,
+            Title = createTaskCommand?.CreateTaskRequest?.Title ?? throw new ArgumentNullException(nameof(createTaskCommand.CreateTaskRequest.Title)),
             Description = createTaskCommand?.CreateTaskRequest?.Description,
-            Status = (Status)createTaskCommand?.CreateTaskRequest?.Status,
-            Priority = (Priority)createTaskCommand?.CreateTaskRequest?.Priority,
+            Status = Enum.TryParse<Status>(createTaskCommand?.CreateTaskRequest?.Status, ignoreCase: true, out var status) ? status : throw new ArgumentException("Invalid Status value"),
+            Priority = Enum.TryParse<Priority>(createTaskCommand?.CreateTaskRequest?.Priority, ignoreCase: true, out var priority) ? priority : throw new ArgumentException("Invalid Priority value"),
             DueDate = createTaskCommand?.CreateTaskRequest?.DueDate,
-            UserId = createTaskCommand?.CreateTaskRequest?.UserId
+            UserId = createTaskCommand?.CreateTaskRequest?.UserId ?? throw new ArgumentNullException(nameof(createTaskCommand.CreateTaskRequest.UserId))
         };
     }
 
@@ -41,8 +41,8 @@ public static class CommandExtensions
         // Update the properties of the existing TaskItem with the values from the UpdateTaskCommand.  
         taskToUpdate.Title = updateTaskCommand.UpdateTaskRequest.Title;
         taskToUpdate.Description = updateTaskCommand.UpdateTaskRequest.Description;
-        taskToUpdate.Status = (Domain.Task.Status)updateTaskCommand.UpdateTaskRequest.Status;
-        taskToUpdate.Priority = (Domain.Task.Priority)updateTaskCommand.UpdateTaskRequest.Priority;
+        taskToUpdate.Status = Enum.TryParse<Status>(updateTaskCommand.UpdateTaskRequest.Status, ignoreCase: true, out var status) ? status : throw new ArgumentException("Invalid Status value");
+        taskToUpdate.Priority = Enum.TryParse<Priority>(updateTaskCommand.UpdateTaskRequest.Priority, ignoreCase: true, out var priority) ? priority : throw new ArgumentException("Invalid Priority value");
         taskToUpdate.DueDate = updateTaskCommand.UpdateTaskRequest.DueDate;
         taskToUpdate.UserId = updateTaskCommand.UpdateTaskRequest.UserId;
 

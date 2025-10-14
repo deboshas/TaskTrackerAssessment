@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TaskTracker.Domain.Task;
 using TaskTracker.Infrastructure.Persistance;
 using TaskTracker.Infrastructure.Repositories;
 using TaskTracker.Infrastructure.Repositories.Abstractions;
@@ -47,7 +48,7 @@ public static class DependancyInjection
             {
                 options.EnableSensitiveDataLogging();
             }
-        });
+        }).ConfigureDataBaseSeeding();
     }
 
     /// <summary>  
@@ -58,5 +59,37 @@ public static class DependancyInjection
     private static IServiceCollection ConfigureRepositories(this IServiceCollection services)
     {
         return services.AddScoped<ITaskTrackerRepository, TaskTrackerRepository>();
+    }
+
+    private static IServiceCollection ConfigureDataBaseSeeding(this IServiceCollection services)
+    {
+        using (var serviceProvider = services.BuildServiceProvider())
+        {
+            using (var scope = serviceProvider.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<TaskTrackerDbContext>();
+                if (dbContext.Database.EnsureCreated())
+                {
+                    SeedDatabase(dbContext);
+                }
+            }
+        }
+        return services;
+    }
+
+    /// <summary>
+    /// Seeds the database with initial data.
+    /// </summary>
+    /// <param name="dbContext">The database context to seed.</param>
+    private static void SeedDatabase(TaskTrackerDbContext dbContext)
+    {
+        // Add initial data seeding logic here  
+        if (!dbContext.Tasks.Any())
+        {
+            dbContext.Tasks.Add(new TaskItem { Title = "Initial Task 1", Description = "Description for Task 1", UserId = "System" });
+            dbContext.Tasks.Add(new TaskItem { Title = "Initial Task 2", Description = "Description for Task 2", UserId = "System" });
+        
+            dbContext.SaveChanges();
+        }
     }
 }

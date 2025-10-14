@@ -1,12 +1,11 @@
 ﻿using ErrorOr;
 using Microsoft.Extensions.Logging;
 using TaskTracker.Application.CQRS.Abstractions;
-using TaskTracker.Application.Task.Search;
 using TaskTracker.Contracts.Request.Task;
 using TaskTracker.Contracts.Response;
 using TaskTracker.Infrastructure.Repositories.Abstractions;
 
-namespace TaskTracker.Application.Task.GetAll;
+namespace TaskTracker.Application.Task.Search;
 
 public class SearchTasksQueryHandler : IQueryHandler<SearchTasksQuery, ErrorOr<List<TaskResponse>>>
 {
@@ -33,9 +32,10 @@ public class SearchTasksQueryHandler : IQueryHandler<SearchTasksQuery, ErrorOr<L
             var filteredTasks = tasks.Where(task =>
                                (string.IsNullOrEmpty(searchTasksQuery.SearchRequest.Title) || task.Title.Contains(searchTasksQuery.SearchRequest.Title, StringComparison.OrdinalIgnoreCase)) &&
                                (string.IsNullOrEmpty(searchTasksQuery.SearchRequest.Description) || task.Description.Contains(searchTasksQuery.SearchRequest.Description, StringComparison.OrdinalIgnoreCase)) &&
-                                (searchTasksQuery.SearchRequest.Status == null || (Enum.TryParse<Status>(searchTasksQuery.SearchRequest.Status, ignoreCase: true, out Status status) && task.Status.Equals(status))) &&
-                                (searchTasksQuery.SearchRequest.Priority == null || (Enum.TryParse<Status>(searchTasksQuery.SearchRequest.Priority, ignoreCase: true, out var priority) && task.Status.Equals(priority))
-                           
+                                (searchTasksQuery.SearchRequest.Status == null || Enum.TryParse(searchTasksQuery.SearchRequest.Status, ignoreCase: true, out Status status) && task.Status.Equals(status)) &&
+                                (searchTasksQuery.SearchRequest.Priority == null || Enum.TryParse<Status>(searchTasksQuery.SearchRequest.Priority, ignoreCase: true, out var priority) && task.Status.Equals(priority)
+
+
 
             if (!filteredTasks.Any())
             {

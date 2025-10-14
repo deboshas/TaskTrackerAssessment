@@ -24,6 +24,7 @@ public static class DependancyInjection
     {
         return services
                .AddPersitance(configuration, hostEnvironment)
+               .AddDataBaseSeeding()
                .ConfigureRepositories();
     }
 
@@ -48,7 +49,7 @@ public static class DependancyInjection
             {
                 options.EnableSensitiveDataLogging();
             }
-        }).ConfigureDataBaseSeeding();
+        });
     }
 
     /// <summary>  
@@ -61,7 +62,7 @@ public static class DependancyInjection
         return services.AddScoped<ITaskTrackerRepository, TaskTrackerRepository>();
     }
 
-    private static IServiceCollection ConfigureDataBaseSeeding(this IServiceCollection services)
+    private static IServiceCollection AddDataBaseSeeding(this IServiceCollection services)
     {
         using (var serviceProvider = services.BuildServiceProvider())
         {

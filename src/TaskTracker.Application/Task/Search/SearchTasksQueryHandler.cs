@@ -50,7 +50,10 @@ public sealed class SearchTasksQueryHandler : IQueryHandler<SearchTasksQuery, Er
 
             var filteredTasks = tasks
                                 .WithTitle(searchTasksQuery.SearchRequest.Title)
-                                .WithDescription(searchTasksQuery.SearchRequest.Description);
+                                .WithDescription(searchTasksQuery.SearchRequest.Description)
+                                .WithStatus(searchTasksQuery.SearchRequest.Status)
+                                .WithPriority(searchTasksQuery.SearchRequest.Priority)
+                                .WithDueDate(searchTasksQuery.SearchRequest.DueDate);
 
             if (!filteredTasks.Any())
             {

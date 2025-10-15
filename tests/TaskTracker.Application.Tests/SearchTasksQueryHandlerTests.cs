@@ -27,8 +27,8 @@ public class SearchTasksQueryHandlerTests
         // Arrange
         var tasks = new List<TaskItem>
         {
-            new TaskItem { Id = Guid.NewGuid(), Title = "Test", Description = "Desc", Status = TaskTracker.Domain.Task.Status.New, Priority = TaskTracker.Domain.Task.Priority.High, UserId = "user-123" },
-            new TaskItem { Id = Guid.NewGuid(), Title = "Other", Description = "OtherDesc", Status = TaskTracker.Domain.Task.Status.Open, Priority = TaskTracker.Domain.Task.Priority.Low, UserId = "user-1234" }
+            new TaskItem { Id = Guid.NewGuid(), Title = "Test", Description = "Desc", Status = TaskTracker.Domain.Task.Status.New, Priority = TaskTracker.Domain.Task.Priority.High, UserId = "user-123", DueDate= DateTime.Now.AddDays(1) },
+            new TaskItem { Id = Guid.NewGuid(), Title = "Other", Description = "OtherDesc", Status = TaskTracker.Domain.Task.Status.Open, Priority = TaskTracker.Domain.Task.Priority.Low, UserId = "user-1234", DueDate= DateTime.Now.AddDays(1)  }
         }.AsQueryable();
 
         _repositoryMock.Setup(r => r.QueryAsync())

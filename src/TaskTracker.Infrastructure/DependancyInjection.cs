@@ -69,7 +69,8 @@ public static class DependancyInjection
             using (var scope = serviceProvider.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<TaskTrackerDbContext>();
-                if (dbContext.Database.EnsureCreated())
+                dbContext.Database.EnsureCreated();
+                if (!dbContext.Tasks.Any())
                 {
                     SeedDatabase(dbContext);
                 }
@@ -85,12 +86,15 @@ public static class DependancyInjection
     private static void SeedDatabase(TaskTrackerDbContext dbContext)
     {
         // Add initial data seeding logic here  
-        if (!dbContext.Tasks.Any())
-        {
-            dbContext.Tasks.Add(new TaskItem { Title = "Initial Task 1", Description = "Description for Task 1", UserId = "System" });
-            dbContext.Tasks.Add(new TaskItem { Title = "Initial Task 2", Description = "Description for Task 2", UserId = "System" });
-        
+       
+            dbContext.Tasks.Add(new TaskItem { Title = "Task 1", Description = "Desc1", UserId = "System" });
+            dbContext.Tasks.Add(new TaskItem { Title = "Task 2", Description = "Desc2", UserId = "System" });
+            dbContext.Tasks.Add(new TaskItem { Title = "Task 3", Description = "Desc3", UserId = "System" });
+            dbContext.Tasks.Add(new TaskItem { Title = "Task 4", Description = "Desc4", UserId = "System" });
+            dbContext.Tasks.Add(new TaskItem { Title = "Task 5", Description = "Desc5", UserId = "System" });
+            dbContext.Tasks.Add(new TaskItem { Title = "Task 6", Description = "Desc6", UserId = "System" });
+
             dbContext.SaveChanges();
-        }
+        
     }
 }

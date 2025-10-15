@@ -1,7 +1,6 @@
-using Microsoft.OpenApi.Models;
 using TaskTracker.API;
-using TaskTracker.Application;
 using TaskTracker.API.Middleware;
+using TaskTracker.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +14,6 @@ builder.Services.AddInfrastructureServices(builder.Configuration, builder.Enviro
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.  
 app.UseMiddleware<ValidationExceptionMiddleware>();
 
 app.UseSwaggerMiddleware();

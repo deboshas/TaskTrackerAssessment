@@ -45,7 +45,7 @@ public class UpdateTaskCommandHandlerTests
 
         // Assert
         Assert.False(result.IsError);
-        _repositoryMock.Verify(r => r.Delete(It.IsAny<TaskItem>()), Times.Once);
+        _repositoryMock.Verify(r => r.Update(It.IsAny<TaskItem>()), Times.Once);
         _repositoryMock.Verify(r => r.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
     }
 

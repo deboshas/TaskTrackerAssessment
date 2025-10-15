@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using TaskTracker.Application.Task.Create;
 using TaskTracker.Application.Task.GetAll;
 using TaskTracker.Application.Task.Remove;
+using TaskTracker.Application.Task.Search;
 using TaskTracker.Application.Task.Update;
 using TaskTracker.Contracts.Request.Task;
 
@@ -31,6 +32,21 @@ public class TaskController : ApiController
         var result = await _sender.Send(new GetAllTasksQuery());
         return result.Match(
             tasks => Ok(tasks),
+            Problem);
+    }
+
+    /// <summary>  
+    /// Searches for tasks based on the provided search criteria.  
+    /// </summary>  
+    /// <param name="searchRequest">The search criteria to filter tasks.</param>  
+    /// <returns>An IActionResult containing the matching tasks or an error response.</returns>  
+    [HttpPost("search")]
+    public async Task<IActionResult> Search(SearchRequest searchRequest)
+    {
+        var searchTasksQuery = new SearchTasksQuery(searchRequest);
+        var result = await _sender.Send(searchTasksQuery);
+        return result.Match(
+            _ => Ok(),
             Problem);
     }
 
@@ -70,7 +86,7 @@ public class TaskController : ApiController
     /// <param name="taskId">The unique identifier of the task to be removed.</param>  
     /// <returns>An IActionResult indicating success or an error response.</returns>  
     [HttpDelete("remove/{taskId}")]
-    public async Task<IActionResult> Updatetask(Guid taskId)
+    public async Task<IActionResult> Removetask(Guid taskId)
     {
         var removeTaskCommand = new RemoveTaskCommand(taskId);
         var result = await _sender.Send(removeTaskCommand);
@@ -78,4 +94,6 @@ public class TaskController : ApiController
             _ => Ok(),
             Problem);
     }
+
+    
 }

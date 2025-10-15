@@ -71,5 +71,5 @@ public class TaskTrackerRepository : ITaskTrackerRepository
     {
         return await _dbContext.SaveChangesAsync(cancellationToken);
     }
-    
+
 }

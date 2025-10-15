@@ -27,8 +27,8 @@ public class UpdateTaskCommandHandlerTests
     {
         // Arrange
         var taskId = Guid.NewGuid();
-        var taskItem = new TaskItem { Id = taskId, Title = "Test", UserId = "user" ,Status=TaskTracker.Domain.Task.Status.Open,Priority=TaskTracker.Domain.Task.Priority.Low};
-        var updateRequest = new UpdateTaskRequest(Id: taskId, Title: "Updated", UserId: "user", Status:"Open",Priority: "Low");
+        var taskItem = new TaskItem { Id = taskId, Title = "Test", UserId = "user", Status = TaskTracker.Domain.Task.Status.Open, Priority = TaskTracker.Domain.Task.Priority.Low };
+        var updateRequest = new UpdateTaskRequest(Id: taskId, Title: "Updated", UserId: "user", Status: "Open", Priority: "Low");
         var updateCommand = new UpdateTaskCommand(updateRequest);
 
         _repositoryMock.Setup(r => r.GetByIdAsync(taskId, It.IsAny<CancellationToken>()))

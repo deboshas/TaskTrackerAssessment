@@ -1,9 +1,9 @@
 ﻿namespace TaskTracker.Contracts.Request.Task;
 
 public record UpdateTaskRequest(Guid Id,
-   string? Title="",
+   string? Title = "",
    string? Description = "",
    string? Status = "",
-   DateTime? DueDate=null,
+   DateTime? DueDate = null,
    string? Priority = "",
    string? UserId = "");

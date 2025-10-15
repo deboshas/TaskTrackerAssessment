@@ -1,6 +1,7 @@
 ﻿using ErrorOr;
 using Microsoft.Extensions.Logging;
 using TaskTracker.Application.CQRS.Abstractions;
+using TaskTracker.Application.Extensions;
 using TaskTracker.Contracts.Common;
 using TaskTracker.Contracts.Response.Task;
 using TaskTracker.Infrastructure.Repositories.Abstractions;
@@ -29,16 +30,7 @@ public class GetAllTasksQueryHandler : IQueryHandler<GetAllTasksQuery, ErrorOr<L
                 return Error.NotFound("No tasks found!");
             }
 
-            return tasks.ToList()
-                .Select(t => new TaskResponse(
-                    t.Id,
-                    t.Title,
-                    t.Description,
-                    (Status)t.Status,
-                    t.DueDate,
-                    (Priority)t.Priority,
-                    t.UserId
-                )).ToList();
+            return tasks.MapToResponse().ToList();
         }
         catch (Exception ex)
         {

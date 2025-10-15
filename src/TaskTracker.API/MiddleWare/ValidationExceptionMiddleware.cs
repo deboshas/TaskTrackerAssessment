@@ -22,7 +22,7 @@ public class ValidationExceptionMiddleware : IMiddleware
         catch (ValidationException exception)
         {
             _logger.LogError(exception, "Validation error occurred");
-            
+
             var problemDetails = new ProblemDetails
             {
                 Status = StatusCodes.Status400BadRequest,

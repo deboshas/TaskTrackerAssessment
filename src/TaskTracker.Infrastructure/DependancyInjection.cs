@@ -1,8 +1,8 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Diagnostics.CodeAnalysis;
 using TaskTracker.Domain.Task;
 using TaskTracker.Infrastructure.Persistance;
 using TaskTracker.Infrastructure.Repositories;
@@ -86,15 +86,15 @@ public static class DependancyInjection
     private static void SeedDatabase(TaskTrackerDbContext dbContext)
     {
         // Add initial data seeding logic here  
-       
-            dbContext.Tasks.Add(new TaskItem { Title = "Task 1", Description = "Desc1", UserId = "System" });
-            dbContext.Tasks.Add(new TaskItem { Title = "Task 2", Description = "Desc2", UserId = "System" });
-            dbContext.Tasks.Add(new TaskItem { Title = "Task 3", Description = "Desc3", UserId = "System" });
-            dbContext.Tasks.Add(new TaskItem { Title = "Task 4", Description = "Desc4", UserId = "System" });
-            dbContext.Tasks.Add(new TaskItem { Title = "Task 5", Description = "Desc5", UserId = "System" });
-            dbContext.Tasks.Add(new TaskItem { Title = "Task 6", Description = "Desc6", UserId = "System" });
 
-            dbContext.SaveChanges();
-        
+        dbContext.Tasks.Add(new TaskItem { Title = "Task 1", Description = "Desc1", UserId = "System" });
+        dbContext.Tasks.Add(new TaskItem { Title = "Task 2", Description = "Desc2", UserId = "System" });
+        dbContext.Tasks.Add(new TaskItem { Title = "Task 3", Description = "Desc3", UserId = "System" });
+        dbContext.Tasks.Add(new TaskItem { Title = "Task 4", Description = "Desc4", UserId = "System" });
+        dbContext.Tasks.Add(new TaskItem { Title = "Task 5", Description = "Desc5", UserId = "System" });
+        dbContext.Tasks.Add(new TaskItem { Title = "Task 6", Description = "Desc6", UserId = "System" });
+
+        dbContext.SaveChanges();
+
     }
 }

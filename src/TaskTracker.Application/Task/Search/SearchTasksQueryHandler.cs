@@ -1,6 +1,5 @@
 ﻿using ErrorOr;
 using Microsoft.Extensions.Logging;
-using TaskTracker.Application.Builder;
 using TaskTracker.Application.CQRS.Abstractions;
 using TaskTracker.Application.Extensions;
 using TaskTracker.Contracts.Response.Task;
@@ -49,9 +48,9 @@ public sealed class SearchTasksQueryHandler : IQueryHandler<SearchTasksQuery, Er
                 return Error.NotFound("No tasks found in the db!");
             }
 
-            var filteredTasks = TaskSearchBuilder.Build(tasks)
-                .WithTitle(searchTasksQuery.SearchRequest.Title)
-                .WithDescription(searchTasksQuery.SearchRequest.Description);
+            var filteredTasks = tasks
+                                .WithTitle(searchTasksQuery.SearchRequest.Title)
+                                .WithDescription(searchTasksQuery.SearchRequest.Description);
 
             if (!filteredTasks.Any())
             {

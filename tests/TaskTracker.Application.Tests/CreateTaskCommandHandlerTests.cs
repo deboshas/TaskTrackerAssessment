@@ -70,6 +70,6 @@ public class CreateTaskCommandHandlerTests
 
         // Assert
         Assert.True(result.IsError);
-        Assert.Contains("error", result.Errors[0].Description, StringComparison.OrdinalIgnoreCase);       
+        Assert.Contains("error", result.Errors[0].Description, StringComparison.OrdinalIgnoreCase);
     }
 }

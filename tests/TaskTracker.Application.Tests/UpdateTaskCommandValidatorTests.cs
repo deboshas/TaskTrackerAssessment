@@ -1,8 +1,6 @@
 ﻿using FluentValidation.TestHelper;
 using TaskTracker.Application.Task.Update;
 using TaskTracker.Contracts.Request.Task;
-using TaskTracker.Domain.Task;
-using Xunit;
 
 namespace TaskTracker.Application.Tests;
 
@@ -15,8 +13,8 @@ public class UpdateTaskCommandValidatorTests
     {
         var request = new UpdateTaskRequest
         (
-            Id : Guid.NewGuid(),
-            Title : "ValidTitle",
+            Id: Guid.NewGuid(),
+            Title: "ValidTitle",
             Description: "ValidDesc",
             Status: "Open",
             DueDate: DateTime.UtcNow.AddDays(1),
@@ -31,7 +29,7 @@ public class UpdateTaskCommandValidatorTests
 
     [Theory]
     [InlineData("")]
-    
+
     public void Should_Fail_When_TitleIsEmpty(string title)
     {
         var request = new UpdateTaskRequest

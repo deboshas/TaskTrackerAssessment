@@ -27,7 +27,7 @@ public class UpdateTaskCommandHandler : ICommandHander<UpdateTaskCommand, ErrorO
             if (taskToUpdate == null)
             {
                 return Error.NotFound(description: $"Task with Id: {updateTaskCommand.UpdateTaskRequest.Id} not found.");
-            }          
+            }
 
             _taskTrackerRepository.Update(updateTaskCommand.MapUpdatedTask(taskToUpdate));
             await _taskTrackerRepository.SaveChangesAsync(cancellationToken);

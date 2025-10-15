@@ -6,9 +6,9 @@ public record TaskResponse(
     Guid TaskId,
     string Title,
     string? Description,
-    Status Status,
+    string Status,
     DateTime? DueDate,
-    Priority Priority,
+    string Priority,
     string UserId
 );
 

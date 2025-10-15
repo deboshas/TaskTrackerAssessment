@@ -1,9 +1,9 @@
 ﻿namespace TaskTracker.Kernel.Common
 {
-    public  interface IUnitOfWork
+    public interface IUnitOfWork
     {
         int SaveChanges();
 
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken=default);
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }

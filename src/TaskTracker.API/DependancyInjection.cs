@@ -1,5 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi.Models;
+using System.Diagnostics.CodeAnalysis;
 using TaskTracker.API.Middleware;
 
 namespace TaskTracker.API;

@@ -14,7 +14,7 @@ public class TaskTrackerDbContext : DbContext
 
     public override int SaveChanges()
     {
-        ChangeTracker.CascadeDeleteTiming=Microsoft.EntityFrameworkCore.ChangeTracking.CascadeTiming.Never;
+        ChangeTracker.CascadeDeleteTiming = Microsoft.EntityFrameworkCore.ChangeTracking.CascadeTiming.Never;
         ChangeTracker.DeleteOrphansTiming = Microsoft.EntityFrameworkCore.ChangeTracking.CascadeTiming.Never;
         ChangeTracker.DetectChanges();
         return base.SaveChanges();

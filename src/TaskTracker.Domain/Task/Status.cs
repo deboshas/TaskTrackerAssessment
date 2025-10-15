@@ -2,8 +2,8 @@
 
 public enum Status
 {
-   New,
-   Open,
-   Closed
-      
+    New,
+    Open,
+    Closed
+
 }

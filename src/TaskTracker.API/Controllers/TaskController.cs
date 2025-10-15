@@ -1,6 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics.CodeAnalysis;
 using TaskTracker.Application.Task.Create;
 using TaskTracker.Application.Task.GetAll;
 using TaskTracker.Application.Task.Remove;
@@ -46,7 +46,7 @@ public class TaskController : ApiController
         var searchTasksQuery = new SearchTasksQuery(searchRequest);
         var result = await _sender.Send(searchTasksQuery);
         return result.Match(
-            _ => Ok(),
+            tasks => Ok(tasks),
             Problem);
     }
 
@@ -95,5 +95,5 @@ public class TaskController : ApiController
             Problem);
     }
 
-    
+
 }

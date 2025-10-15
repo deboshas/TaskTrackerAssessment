@@ -1,6 +1,7 @@
 ﻿using ErrorOr;
 using TaskTracker.Application.CQRS.Abstractions;
 using TaskTracker.Contracts.Request.Task;
+using TaskTracker.Contracts.Response.Task;
 
 namespace TaskTracker.Application.Task.Create;
 /// <summary>  
@@ -8,4 +9,4 @@ namespace TaskTracker.Application.Task.Create;
 /// </summary>  
 /// <param name="CreateTaskRequest">The request object containing details for the task to be created.</param>  
 /// <returns>An <see cref="ErrorOr{T}"/> result containing either a success response or an error.</returns>  
-public record CreateTaskCommand(CreateTaskRequest CreateTaskRequest) : ICommand<ErrorOr<Success>>;
+public record CreateTaskCommand(CreateTaskRequest CreateTaskRequest) : ICommand<ErrorOr<TaskResponse>>;

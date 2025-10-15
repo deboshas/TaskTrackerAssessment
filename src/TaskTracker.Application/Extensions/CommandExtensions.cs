@@ -22,6 +22,7 @@ public static class CommandExtensions
 
         return new TaskItem
         {
+            Id = Guid.NewGuid(),
             Title = createTaskCommand.CreateTaskRequest.Title ?? throw new ArgumentNullException(nameof(createTaskCommand.CreateTaskRequest.Title)),
             Description = createTaskCommand.CreateTaskRequest.Description,
             Status = Enum.TryParse<Domain.Task.Status>(createTaskCommand.CreateTaskRequest.Status, ignoreCase: true, out var status) ? status : throw new ArgumentException("Invalid Status value"),
@@ -72,5 +73,25 @@ public static class CommandExtensions
                 filteredTask.UserId
             );
         }
+    }
+
+    /// <summary>
+    /// Maps filtered TaskItem objects to TaskResponse objects.
+    /// </summary>
+    /// <param name="filteredTasks">The filtered tasks to map.</param>
+    /// <returns>An enumerable of TaskResponse objects.</returns>
+    internal static TaskResponse MapToResponse(this TaskItem task)
+    {
+
+        return new TaskResponse(
+            task.Id,
+            task.Title,
+            task.Description,
+            task.Status.ToString(),
+            task.DueDate,
+            task.Priority.ToString(),
+            task.UserId
+       );
+
     }
 }

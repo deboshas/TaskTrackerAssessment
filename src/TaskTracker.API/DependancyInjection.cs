@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.OpenApi.Models;
+using TaskTracker.API.Middleware;
 
 namespace TaskTracker.API;
 
@@ -15,16 +16,18 @@ public static class DependancyInjection
     /// <returns>The updated service collection with registered infrastructure services.</returns>  
     public static IServiceCollection AddWebAppServices(this IServiceCollection services)
     {
-        return services
-              .AddSwaggerGen(options =>
-              {
-                  options.SwaggerDoc("v1", new OpenApiInfo
-                  {
-                      Title = "TaskTracker API",
-                      Version = "v1",
-                      Description = "TaskTracker API with Swagger"
-                  });
-              });
+        services
+            .AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "TaskTracker API",
+                    Version = "v1",
+                    Description = "TaskTracker API with Swagger"
+                });
+            });
+
+        return services.AddScoped<ValidationExceptionMiddleware>();
     }
 
     public static WebApplication UseSwaggerMiddleware(this WebApplication app)

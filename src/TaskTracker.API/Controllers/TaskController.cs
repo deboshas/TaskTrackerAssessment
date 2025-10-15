@@ -86,7 +86,7 @@ public class TaskController : ApiController
     /// <param name="taskId">The unique identifier of the task to be removed.</param>  
     /// <returns>An IActionResult indicating success or an error response.</returns>  
     [HttpDelete("remove/{taskId}")]
-    public async Task<IActionResult> RemoveTask(Guid taskId)
+    public async Task<IActionResult> RemoveTask(string taskId)
     {
         var removeTaskCommand = new RemoveTaskCommand(taskId);
         var result = await _sender.Send(removeTaskCommand);

@@ -34,7 +34,7 @@ public class RemoveTaskCommandHandlerTests
              .Returns(System.Threading.Tasks.Task.FromResult(1));
 
         // Act
-        var result = await _handler.Handle(new RemoveTaskCommand(taskId), CancellationToken.None);
+        var result = await _handler.Handle(new RemoveTaskCommand(taskId.ToString()), CancellationToken.None);
 
         // Assert
         Assert.False(result.IsError);
@@ -51,7 +51,7 @@ public class RemoveTaskCommandHandlerTests
             .ReturnsAsync((TaskItem?)null);
 
         // Act
-        var result = await _handler.Handle(new RemoveTaskCommand(taskId), CancellationToken.None);
+        var result = await _handler.Handle(new RemoveTaskCommand(taskId.ToString()), CancellationToken.None);
 
         // Assert
         Assert.True(result.IsError);
@@ -67,7 +67,7 @@ public class RemoveTaskCommandHandlerTests
             .ThrowsAsync(new Exception("DB error"));
 
         // Act
-        var result = await _handler.Handle(new RemoveTaskCommand(taskId), CancellationToken.None);
+        var result = await _handler.Handle(new RemoveTaskCommand(taskId.ToString()), CancellationToken.None);
 
         // Assert
         Assert.True(result.IsError);

@@ -21,7 +21,10 @@ public class RemoveTaskCommandHandler : ICommandHander<RemoveTaskCommand, ErrorO
     {
         try
         {
-            var taskToRemove = await _taskTrackerRepository.GetByIdAsync(removeTaskCommand.TaskId, cancellationToken);
+            Guid.TryParse(removeTaskCommand.TaskId, out var taskId);
+           
+            var taskToRemove = await _taskTrackerRepository.GetByIdAsync(taskId, cancellationToken);
+
             if (taskToRemove == null)
             {
                 return Error.NotFound(description: $"Task with Id: {removeTaskCommand.TaskId} not found.");

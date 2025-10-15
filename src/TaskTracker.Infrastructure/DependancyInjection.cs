@@ -8,7 +8,7 @@ using TaskTracker.Infrastructure.Persistance;
 using TaskTracker.Infrastructure.Repositories;
 using TaskTracker.Infrastructure.Repositories.Abstractions;
 
-namespace TaskTracker.Application;
+namespace TaskTracker.Infrastructure;
 
 [ExcludeFromCodeCoverage]
 public static class DependancyInjection

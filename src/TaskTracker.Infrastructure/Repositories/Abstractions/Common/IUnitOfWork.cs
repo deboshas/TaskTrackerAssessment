@@ -1,4 +1,4 @@
-﻿namespace TaskTracker.Kernel.Common
+﻿namespace TaskTracker.Infrastructure.Repositories.Abstractions.Common
 {
     public interface IUnitOfWork
     {

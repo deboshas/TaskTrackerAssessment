@@ -1,6 +1,7 @@
 using TaskTracker.API;
 using TaskTracker.API.Middleware;
 using TaskTracker.Application;
+using TaskTracker.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 

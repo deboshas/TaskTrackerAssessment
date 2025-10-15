@@ -1,5 +1,5 @@
 ﻿using TaskTracker.Domain.Task;
-using TaskTracker.Kernel.Common;
+using TaskTracker.Infrastructure.Repositories.Abstractions.Common;
 
 namespace TaskTracker.Infrastructure.Repositories.Abstractions;
 

@@ -71,7 +71,7 @@ public class TaskController : ApiController
     /// <param name="updateTaskRequest">The request object containing updated task details.</param>  
     /// <returns>An IActionResult containing the updated task or an error response.</returns>  
     [HttpPut("update")]
-    public async Task<IActionResult> Updatetask([FromBody] UpdateTaskRequest updateTaskRequest)
+    public async Task<IActionResult> UpdateTask([FromBody] UpdateTaskRequest updateTaskRequest)
     {
         var updateTaskCommand = new UpdateTaskCommand(updateTaskRequest);
         var result = await _sender.Send(updateTaskCommand);
@@ -86,7 +86,7 @@ public class TaskController : ApiController
     /// <param name="taskId">The unique identifier of the task to be removed.</param>  
     /// <returns>An IActionResult indicating success or an error response.</returns>  
     [HttpDelete("remove/{taskId}")]
-    public async Task<IActionResult> Removetask(Guid taskId)
+    public async Task<IActionResult> RemoveTask(Guid taskId)
     {
         var removeTaskCommand = new RemoveTaskCommand(taskId);
         var result = await _sender.Send(removeTaskCommand);

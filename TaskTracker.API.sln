@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{194D5970-B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "adr", "adr", "{709C3037-65CF-495B-AB69-A99325745AB3}"
 	ProjectSection(SolutionItems) = preProject
-		adr_001.md = adr_001.md
+		docs\adr_001.md = docs\adr_001.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{18BBCDEA-9685-4DA6-9730-1EA41C9680C6}"

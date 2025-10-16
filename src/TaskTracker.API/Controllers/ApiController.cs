@@ -22,7 +22,7 @@ public class ApiController : ControllerBase
             return Problem();
         }
 
-        if (errors.All(error => error.Type == ErrorType.Validation))
+        if (errors!=null && errors.Any() &&   errors.All(error => error.Type == ErrorType.Validation))
         {
             return ValidateProblems(errors);
         }

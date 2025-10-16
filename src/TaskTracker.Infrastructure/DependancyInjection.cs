@@ -87,12 +87,12 @@ public static class DependancyInjection
     {
         // Add initial data seeding logic here  
 
-        dbContext.Tasks.Add(new TaskItem { Title = "Task 1", Description = "Desc1", UserId = "System" });
-        dbContext.Tasks.Add(new TaskItem { Title = "Task 2", Description = "Desc2", UserId = "System" });
-        dbContext.Tasks.Add(new TaskItem { Title = "Task 3", Description = "Desc3", UserId = "System" });
-        dbContext.Tasks.Add(new TaskItem { Title = "Task 4", Description = "Desc4", UserId = "System" });
-        dbContext.Tasks.Add(new TaskItem { Title = "Task 5", Description = "Desc5", UserId = "System" });
-        dbContext.Tasks.Add(new TaskItem { Title = "Task 6", Description = "Desc6", UserId = "System" });
+        dbContext.Tasks.Add(new TaskItem { Title = "Task 1", Description = "Desc1", UserId = "System",DueDate=DateTime.Now });
+        dbContext.Tasks.Add(new TaskItem { Title = "Task 2", Description = "Desc2", UserId = "System" , DueDate = DateTime.Now });
+        dbContext.Tasks.Add(new TaskItem { Title = "Task 3", Description = "Desc3", UserId = "System" , DueDate = DateTime.Now });
+        dbContext.Tasks.Add(new TaskItem { Title = "Task 4", Description = "Desc4", UserId = "System" , DueDate = DateTime.Now });
+        dbContext.Tasks.Add(new TaskItem { Title = "Task 5", Description = "Desc5", UserId = "System" , DueDate = DateTime.Now });
+        dbContext.Tasks.Add(new TaskItem { Title = "Task 6", Description = "Desc6", UserId = "System" , DueDate = DateTime.Now });
 
         dbContext.SaveChanges();
 

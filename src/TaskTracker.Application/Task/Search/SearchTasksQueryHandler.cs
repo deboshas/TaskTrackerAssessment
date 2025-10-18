@@ -53,7 +53,8 @@ public sealed class SearchTasksQueryHandler : IQueryHandler<SearchTasksQuery, Er
                                 .WithDescription(searchTasksQuery.SearchRequest.Description)
                                 .WithStatus(searchTasksQuery.SearchRequest.Status)
                                 .WithPriority(searchTasksQuery.SearchRequest.Priority)
-                                .WithDueDate(searchTasksQuery.SearchRequest.DueDate);
+                                .WithDueDate(searchTasksQuery.SearchRequest.DueDate)
+                                .WithUserId(searchTasksQuery.SearchRequest.UserId);
 
             if (!filteredTasks.Any())
             {

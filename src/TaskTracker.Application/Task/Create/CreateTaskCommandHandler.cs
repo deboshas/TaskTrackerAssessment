@@ -42,6 +42,7 @@ public class CreateTaskCommandHandler : ICommandHander<CreateTaskCommand, ErrorO
 
             // Add to repository
             _taskTrackerRepository.Add(taskEntity);
+       
 
             // Save changes to the repository asynchronously
             await _taskTrackerRepository.SaveChangesAsync(cancellationToken);

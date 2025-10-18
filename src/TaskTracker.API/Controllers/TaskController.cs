@@ -85,8 +85,8 @@ public class TaskController : ApiController
     /// </summary>  
     /// <param name="taskId">The unique identifier of the task to be removed.</param>  
     /// <returns>An IActionResult indicating success or an error response.</returns>  
-    [HttpDelete("remove/{taskId}")]
-    public async Task<IActionResult> RemoveTask(string taskId)
+    [HttpDelete("remove/v1/{taskId}")]
+    public async Task<IActionResult> RemoveTaskV1(string taskId)
     {
         var removeTaskCommand = new RemoveTaskCommand(taskId);
         var result = await _sender.Send(removeTaskCommand);
@@ -94,6 +94,17 @@ public class TaskController : ApiController
             _ => Ok(),
             Problem);
     }
+
+    [HttpDelete("remove/v2/{taskId}")]
+    public async Task<IActionResult> RemoveTaskV2(string taskId)
+    {
+        var removeTaskCommand = new RemoveTaskCommand(taskId);
+        var result = await _sender.Send(removeTaskCommand);
+        return result.Match(
+            _ => Ok(),
+            Problem);
+    }
+
 
 
 }

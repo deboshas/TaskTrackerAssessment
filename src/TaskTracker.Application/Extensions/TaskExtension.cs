@@ -1,4 +1,3 @@
-using System;
 using TaskTracker.Domain.Task;
 
 namespace TaskTracker.Application.Extensions;
@@ -93,7 +92,7 @@ public static class TaskExtension
     /// <returns>The filtered queryable collection.</returns>
     public static IQueryable<TaskItem> WithDueDate(this IQueryable<TaskItem> tasks, DateTime? dueDate)
     {
-        if (dueDate.HasValue)
+        if (dueDate!=null && dueDate.HasValue)
         {
             return tasks.Where(task => task.DueDate.Value.Year == dueDate.Value.Year
                               && task.DueDate.Value.Month == dueDate.Value.Month
